@@ -5,6 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Train Scheduler</title>
+	<link rel="icon" href="assets/images/train.png">
 
 	<!-- Reset CSS -->
 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
@@ -30,18 +31,40 @@
 	<script src="https://use.fontawesome.com/d1c076a58a.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+	<script src="https://www.appelsiini.net/download/jquery.jeditable.mini.js"></script>
 	<script type="text/javascript" src="assets/javascript/javascript.js"></script>
 </head>
 <body>
+	<div class="update-bg">
+		<div class="jumbotron" id="update-window">
+			<div class="container">
+				<legend>Update Train</legend>
+				<form role="form">
+					<div class="form-group">
+						<label for="">Train Name</label>
+						<input type="text" class="form-control" id="update-train-name" placeholder="">
+						<label for="">Destination</label>
+						<input type="text" class="form-control" id="update-destination" placeholder="">
+						<label for="">First Train Time (HH:mm - military time)</label>
+						<input type="text" class="form-control" id="update-first-time" placeholder="">
+						<label for="">Frequency (min)</label>
+						<input type="text" class="form-control" id="update-frequency" placeholder="">
+					</div>
+					<button type="submit" class="btn btn-primary" id="submit-update">Update</button>
+					<button type="submit" class="btn btn-danger" id="cancel-update">Cancel</button>
+				</form>
+			</div>
+		</div>
+	</div>
 	<div class="container">
-		<div class="jumbotron">
+		<div class="jumbotron header">
 			<div class="container">
 				<h1>Train Scheduler</h1>
 				<h2>Current Time: <span id="currentTime"></span></h2>
 			</div>
 		</div>
 
-		<div class="panel panel-primary">
+		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">Current Train Schedule</h3>
 			</div>
@@ -49,11 +72,11 @@
 				<table class="table table-hover" id="trains-table">
 					<thead>
 						<tr>
-							<th>Train Name</th>
-							<th>Destination</th>
-							<th>Frequency (min)</th>
-							<th>Next Arrival</th>
-							<th>Minutes Away</th>
+							<th>Train Name<i class="fa fa-caret-down sorter" aria-hidden="true" data-index="0"></i><i class="fa fa-caret-up sorter" aria-hidden="true" data-index="0"></i></th>
+							<th>Destination<i class="fa fa-caret-down sorter" aria-hidden="true" data-index="1"></i><i class="fa fa-caret-up sorter" aria-hidden="true" data-index="1"></i></th>
+							<th>Frequency (min)<i class="fa fa-caret-down sorter" aria-hidden="true" data-index="2"></i><i class="fa fa-caret-up sorter" aria-hidden="true" data-index="2"></i></th>
+							<th>Next Arrival<i class="fa fa-caret-down sorter" aria-hidden="true" data-index="3"></i><i class="fa fa-caret-up sorter" aria-hidden="true" data-index="3"></i></th>
+							<th>Minutes Away<i class="fa fa-caret-down sorter" aria-hidden="true" data-index="4"></i><i class="fa fa-caret-up sorter" aria-hidden="true" data-index="4"></i></th>
 						</tr>
 					</thead>
 					<tbody></tbody>
@@ -61,7 +84,7 @@
 			</div>
 		</div>
 
-		<div class="panel panel-primary">
+		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">Add Train</h3>
 			</div>
@@ -69,13 +92,13 @@
 				<form role="form">
 					<div class="form-group">
 						<label for="">Train Name</label>
-						<input type="text" class="form-control" id="input-train-name" placeholder="">
+						<input type="text" class="form-control" id="input-train-name" placeholder="Super Chief">
 						<label for="">Destination</label>
-						<input type="text" class="form-control" id="input-destination" placeholder="">
+						<input type="text" class="form-control" id="input-destination" placeholder="Los Angeles">
 						<label for="">First Train Time (HH:mm - military time)</label>
-						<input type="text" class="form-control" id="input-first-time" placeholder="">
+						<input type="text" class="form-control" id="input-first-time" placeholder="06:25">
 						<label for="">Frequency (min)</label>
-						<input type="text" class="form-control" id="input-frequency" placeholder="">
+						<input type="text" class="form-control" id="input-frequency" placeholder="1000">
 					</div>
 					<button type="submit" class="btn btn-primary" id="submit">Submit</button>
 				</form>

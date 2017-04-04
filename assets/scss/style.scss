@@ -1,10 +1,22 @@
-@import 'https://fonts.googleapis.com/css?family=Open+Sans';
+$footer-link-hover     : #65c2ed;
+$gray-darker           : lighten(#000, 13.5%) !default; // #222
+$gray-darker-inactive  : #9d9d9d;
+$black                 : #000 !default;
+$white                 : #fff !default;
+$theme-color-jumbotron : #0E0D10;
+$theme-color-panel     : #1D212D;
 
-$footer-link-hover    : #65c2ed;
-$gray-darker          : lighten(#000, 13.5%) !default; // #222
-$gray-darker-inactive : #9d9d9d;
-$black                : #000 !default;
-$white                : #fff !default;
+@font-face {
+    font-family: "museo_sans500";
+    src: url("../fonts/museosans_500/MuseoSans_500-webfont.eot");
+    src: url("../fonts/museosans_500/MuseoSans_500-webfont.eot?#iefix") format("embedded-opentype"),
+         url("../fonts/museosans_500/MuseoSans_500-webfont.woff2") format("woff2"),
+         url("../fonts/museosans_500/MuseoSans_500-webfont.woff") format("woff"),
+         url("../fonts/museosans_500/MuseoSans_500-webfont.ttf") format("truetype"),
+         url("../fonts/museosans_500/MuseoSans_500-webfont.svg#museo_sans500") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
 
 @mixin box-shadow ($offsetx, $offsety, $blur, $spread, $color) {
 	-moz-box-shadow: $offsetx $offsety $blur $spread $color;
@@ -18,27 +30,108 @@ html {
 }
 
 body {
-	font-family: 'Lato', sans-serif;
+	font-family: "museo_sans500";
 	margin-bottom: 241px;
 	// padding-top: 100px;
 }
 
-.jumbotron {
+.update-bg {
+	display          : none; /* Hidden by default */
+	position         : fixed; /* Stay in place */
+	z-index          : 1; /* Sit on top */
+	left             : 0;
+	top              : 0;
+	width            : 100%; /* Full width */
+	height           : 100%; /* Full height */
+	overflow         : auto; /* Enable scroll if needed */
+	background-color : rgb(0,0,0); /* Fallback color */
+	background-color : rgba(0,0,0,0.6); /* Black w/ opacity */
+
+    #update-window {
+    	display: none;
+    	font-size: 14px;
+    	position: fixed;
+    	top: 26vh;
+    	margin-left: 37.5%;
+    	height: 48vh;
+    	width: 25%;
+    	z-index: 2;
+    	border-radius: 10px;
+
+    	legend {
+    		text-align: center;
+    		font-size: 24px;
+    	}
+
+    	form {
+    		height: 26vh;
+    		width: 80%;
+    		margin-left: auto;
+    		margin-right: auto;
+
+    		input {
+    			margin-bottom: 10px;
+    			font-size: 14px;
+    		}
+
+    		button {
+    			float: left;
+    			margin-bottom: 10px;
+    			margin-top: 10px;
+    			font-size: 14px;
+    			width: 20%;
+    		}
+
+    		#submit-update {
+    			margin-left: 27.5%;
+    		}
+
+    		#cancel-update {
+    			margin-left: 5%;
+    		}
+    	}
+    }
+}
+
+.header {
 	margin-top: 20px;
-	background-color: #070028;
+	background-color: $theme-color-jumbotron;
 	background-image: none;
-	color: white;
+	color: $white;
 	text-align: center;
 }
 
-// .panel-primary {
+.panel {
+	border-color: $theme-color-panel;
 
-// 	.panel-heading {
-// 		background-color: #070028;
-// 		background-image: none;
-// 		color: white;
-// 	}
-// }
+	.panel-heading {
+		background-color: $theme-color-panel;
+		background-image: none;
+		color: $white;
+	}
+
+	#trains-table {
+		.sorter {
+			float: right;
+			padding: 2px 6px;
+			font-size: 16px;
+		}
+
+		.fa-caret-down {
+			margin-right: 5px;
+		}
+
+		button {
+			float: right;
+			padding: 2px 6px;
+			font-size: 12px;
+		}
+
+		.edit-button {
+			margin-right: 5px;
+		}
+	}
+}
 
 input {
 	margin-bottom: 20px;
